@@ -18,11 +18,12 @@
                         <!--{{ _.keys(user).length === index+1 ? errors.first(property) : '' }}-->
                     </div>
                 </div>
-            </div>
-            <div class="card-footer text-right">
-                <button class="btn btn-primary" @click="submit">
-                    Submit
-                </button>
+
+                <div class="text-right">
+                    <button class="btn btn-primary" @click="submit">
+                        Submit
+                    </button>
+                </div>
             </div>
         </div>
     </div>
@@ -92,3 +93,25 @@
         }
     }
 </script>
+
+<style lang="scss" scoped>
+    .auth-form {
+        max-width: 455px;
+
+        .card-body {
+            margin: 15px 10px 0 10px ;
+        }
+        .card-header {
+            background-color: #007bff;
+            color: #fff;
+
+            .card-title {
+                font-size: 18px;
+                font-weight: bold;
+            }
+        }
+        .btn {
+            font-size: 14px;
+        }
+    }
+</style>
