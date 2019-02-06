@@ -1,5 +1,5 @@
-import AuthPage from '../components/AuthPage';
-import ConverterCompressor from '../components/ConverterCompressor';
+import AuthPage from '../components/pages/Auth';
+import ConverterCompressor from '../components/pages/ConverterCompressor';
 
 export default [
     {

@@ -6,8 +6,8 @@
 </template>
 
 <script>
-  import AuthForm from './particles/AuthForm';
-  import NavBar from "./particles/NavBar";
+  import AuthForm from '../particles/AuthForm';
+  import NavBar from "../particles/NavBar";
 
   export default {
     name: 'auth-page',
@@ -17,7 +17,4 @@
     }
   }
 </script>
-
-<style lang="scss">
-</style>
 

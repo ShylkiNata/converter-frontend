@@ -10,6 +10,7 @@
                            :name="key"
                            :key="`${formType}${key}`"
                            :placeholder="uppercased(key)"
+                           :type="getTypeByProperty(key)"
                            v-validate="getRulesByProperty(key)"
                            class="form-control"
                     />
@@ -55,23 +56,30 @@
                 };
 
                 switch (this.formType) {
-                    case 'Sign In':
-                        this.user = {'username': null, ...this.user};
-                        break;
                     case 'Sign Up':
                         this.user['password confirmation'] = null;
                         break;
                 }
             },
+            getTypeByProperty(key) {
+                switch (key) {
+                    case 'password':
+                    case 'password confirmation':
+                        return 'password';
+                    default:
+                        return 'text';
+                }
+            },
             getRulesByProperty(key) {
                 switch(key) {
                     case 'username':
-                        return 'required|min:8|max:64';
+                        return 'required|min:6|max:64';
                     case 'email':
-                        return 'required|min:8|max:64|email';
+                        return 'required|min:6|max:64|email';
                     case 'password':
+                        return 'required|min:6|max:64';
                     case 'password confirmation':
-                        return 'required|min:8|max:64';
+                        return 'required|min:6|max:64|confirmed:password';
                 }
             },
             uppercased(key) {
@@ -82,8 +90,23 @@
 
                 return words.join(' ');
             },
+            dispatch() {
+                this.$store.dispatch('auth', this.user)
+                    .then(() => {
+                        //this.$router.push({name: 'ConverterCompressor'})
+                    }).catch(errors => {
+                        console.log(errors);
+                    })
+            },
             submit() {
-                this.$store.dispatch('auth', this.user);
+                this.$validator.validate()
+                    .then(result => {
+                        if(result) {
+                            this.dispatch();
+                        }
+                    }).catch(errors => {
+                        console.log(errors);
+                    })
             }
         },
         watch: {
