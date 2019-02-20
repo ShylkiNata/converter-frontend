@@ -1,6 +1,9 @@
 <template>
     <div class="file-loader col-sm-12 col-md-7">
         <div class="container mt-3">
+
+            <div class="file-loader-header"> {{ header }} </div>
+
             <div id="file-drag-drop">
                 <form ref="fileform" :style="{'background-color': bgColor}">
                     <div class="fileform-shadow" :style="{'background-color': shadedBg }">
@@ -15,7 +18,7 @@
                 </form>
             </div>
 
-            <div class="file-list mt-5">
+            <div class="file-list mt-4">
                 <div class="file-item" v-for="(file,index) in files">
                     <span>{{ file.name }}</span>
                     <font-awesome-icon class="remove-icon" icon="trash" @click="remove(index)"/>
@@ -30,7 +33,8 @@
         name: "file-loader",
         props: [
           'bgColor',
-          'formats'
+          'formats',
+          'header'
         ],
         data() {
             return {
@@ -89,19 +93,24 @@
     }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
+    .file-loader-header {
+        text-align: center;
+        line-height: 70px;
+        font-size: 20px;
+        font-weight: 700;
+    }
     form {
         position: relative;
         display: block;
         margin: auto;
-        margin-top: 40px;
         text-align: center;
         line-height: 300px;
         border-radius: 4px;
         color: #fff;
         font-weight: 500;
         font-size: 20px;
-        box-shadow: -2px 1px 12px -2px rgba(0,0,0,0.75);
+        box-shadow: -2px 1px 3px -2px rgba(0,0,0,0.75);
         padding: 10px;
 
         .fileform-shadow {
@@ -138,6 +147,7 @@
             padding: 0 15px;
             border-radius: 2px;
             box-shadow: -2px 1px 3px -2px rgba(0,0,0,0.75);
+            margin-bottom: 8px;
         }
         .remove-icon {
             position: absolute;
