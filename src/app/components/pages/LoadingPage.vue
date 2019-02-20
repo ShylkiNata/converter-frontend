@@ -2,16 +2,21 @@
     <div class="page home-page">
         <nav-bar />
 
-        <file-loader class="form"
-                     :bgColor="item.color"
-                     :header="item.type"
-                     :formats="allowedFormats"
-                     ref="fileLoader"/>
+        <div class="container col-sm-12 col-md-7">
+            <div class="title"> {{ item.type }} </div>
 
-        <div class="form">
-            <div class="container text-right col-sm-12 col-md-7">
-                <progress max="100" :value.prop="uploaded"></progress>
-                <button class="btn btn-outline-dark" @click="submit()">Submit</button>
+            <file-loader :bgColor="item.color"
+                         :formats="allowedFormats"
+                         :disabled="processing"
+                         ref="fileLoader"/>
+
+            <div class="submit-group">
+                <b-progress
+                        v-if="processing"
+                        class="submit-group-progress-bar"
+                        :value="uploaded"
+                        :max="100" show-progress animated />
+                <button class="btn btn-outline-dark submit-group-btn" @click="submit()">Submit</button>
             </div>
         </div>
     </div>
@@ -33,21 +38,25 @@
         ],
         data() {
             return {
-                uploaded: 0
+                uploaded: 0,
+                processing: false
             }
         },
         computed: {
+            type() {
+                return this.$route.params.type;
+            },
+            tool() {
+                return this.$route.params.tool;
+            },
             item() {
-                let tool = this.$route.params.tool;
-
-                return this[tool].find(item => {
+                return this[this.tool].find(item => {
                     let str = item.type.toLowerCase().replace(/ /g, '-');
-                   return str === this.$route.params.type;
+                   return str === this.type;
                 });
             },
             allowedFormats() {
-                let param = this.$route.params.type;
-                let type = param.split('-')[0];
+                let type = this.type.split('-')[0];
 
                 switch (type) {
                     case 'pdf':
@@ -58,17 +67,23 @@
             },
         },
         methods: {
+            updateProgress(progress) {
+                this.uploaded = parseInt(Math.round((progress.loaded*100)/progress.total));
+            },
             submit() {
+                this.processing = true;
+
                 let formData = new FormData();
 
                 this.$refs.fileLoader.files.forEach(file => {
                     formData.append(file.name, file) ;
                 });
 
-                this.axios.post('http://127.0.0.1:8005/api/compress', formData, {
-                        onUploadProgress: function(progressEvent) {
-                            this.uploaded = parseInt(Math.round((progressEvent.loaded*100)/progressEvent.total));
-                        }.bind(this)
+                this.axios.post(
+                    `http://127.0.0.1:8005/api/${this.tool}/${this.type}`,
+                    formData,
+                    {
+                        onUploadProgress: progress => this.updateProgress(progress)
                     }
                 ).then(function(){
                     console.log('SUCCESS!!');
@@ -80,6 +95,29 @@
     }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+    .container {
+        display:block;
+        margin: auto;
+        position: relative;
 
+        .title {
+            text-align: center;
+            line-height: 70px;
+            font-size: 20px;
+            font-weight: 700;
+        }
+    }
+    .submit-group {
+        display: flex;
+        flex-wrap: wrap;
+        padding: 20px;
+        justify-content: flex-end;
+
+        .submit-group-progress-bar {
+            flex: 1;
+            margin-right: 20px;
+            align-self: center;
+        }
+    }
 </style>
