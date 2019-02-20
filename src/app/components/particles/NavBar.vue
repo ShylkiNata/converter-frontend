@@ -28,7 +28,7 @@
         name: "nav-bar",
         data() {
             return {
-                navigation: ['Sign In', 'Sign Up'],
+                navigation: ['Home', 'Sign In', 'Sign Up'],
                 service: 'Converter & Compressor'
             }
         }

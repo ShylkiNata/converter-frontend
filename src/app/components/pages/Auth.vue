@@ -1,5 +1,5 @@
 <template>
-  <div class="page">
+  <div class="page auth-page">
     <nav-bar></nav-bar>
     <auth-form class="col-sm-12 col-md-6 col-lg-5 col-xl-4"></auth-form>
   </div>

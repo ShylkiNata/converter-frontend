@@ -1,10 +1,10 @@
 import AuthPage from '../components/pages/Auth';
-import ConverterCompressor from '../components/pages/ConverterCompressor';
+import Home from '../components/pages/Home';
 
 export default [
     {
         path: '/',
-        redirect: 'sign-in',
+        redirect: 'home',
     },
     {
         path: '/sign-in',
@@ -17,8 +17,8 @@ export default [
         component: AuthPage,
     },
     {
-        path: '/service',
-        name: 'converter-compressor',
-        component: ConverterCompressor
+        path: '/home',
+        name: 'Home',
+        component: Home
     },
 ];
