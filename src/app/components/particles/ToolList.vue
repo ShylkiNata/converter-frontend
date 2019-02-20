@@ -5,7 +5,7 @@
         </div>
         <div class="list">
             <div class="converter-item" v-for="item in items"
-                 v-bind:style="{'background-color': item.color}"
+                 :style="{'background-color': item.color}"
                  @click="toItemPage(item.type)">
                 <div>{{item.icon}}</div>
                 <div>{{item.type}}</div>
