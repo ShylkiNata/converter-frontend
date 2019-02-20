@@ -5,7 +5,8 @@
         </div>
         <div class="list">
             <div class="converter-item" v-for="item in items"
-                 v-bind:style="{'background-color': item.color}">
+                 v-bind:style="{'background-color': item.color}"
+                 @click="toItemPage(item.type)">
                 <div>{{item.icon}}</div>
                 <div>{{item.type}}</div>
             </div>
@@ -16,9 +17,34 @@
 <script>
     export default {
         name: "ToolList",
-        props: {
-            header: {},
-            items: {}
+        props: [
+            'header', 'items'
+        ],
+        computed: {
+          authorized() {
+              return true;
+          }
+        },
+        methods: {
+            toItemPage(type) {
+                if(!this.authorized) {
+                    this.$router.push({
+                        name: 'Sign Up'
+                    });
+                    return ;
+                }
+
+                this.$router.push({
+                    name: 'Loading Page',
+                    params: this.getParams(type)
+                });
+            },
+            getParams(type) {
+                return {
+                    tool: this.header.toLowerCase(),
+                    type: type.toLowerCase().replace(/ /gi, '-')
+                };
+            }
         }
     }
 </script>

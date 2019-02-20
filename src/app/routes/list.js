@@ -1,5 +1,6 @@
 import AuthPage from '../components/pages/Auth';
 import Home from '../components/pages/Home';
+import LoadingPage from '../components/pages/LoadingPage';
 
 export default [
     {
@@ -21,4 +22,9 @@ export default [
         name: 'Home',
         component: Home
     },
+    {
+        path: '/tool/:tool/:type',
+        name: 'Loading Page',
+        component: LoadingPage
+    }
 ];
