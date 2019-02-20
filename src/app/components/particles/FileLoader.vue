@@ -144,7 +144,6 @@
             right: 15px;
             top: 9px;
             cursor: pointer;
-            color: red;
             
             &:hover {
                 filter: brightness(70%);
