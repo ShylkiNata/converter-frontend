@@ -16,9 +16,9 @@
             </div>
 
             <div class="file-list mt-5">
-                <div v-for="(file,index) in files">
-                    <div @click="remove(index)">delete</div>
+                <div class="file-item" v-for="(file,index) in files">
                     <span>{{ file.name }}</span>
+                    <font-awesome-icon class="remove-icon" icon="trash" @click="remove(index)"/>
                 </div>
             </div>
         </div>
@@ -131,6 +131,24 @@
     }
 
     .file-list {
-
+        .file-item {
+            position: relative;
+            border: 1px solid grey;
+            line-height: 36px;
+            padding: 0 15px;
+            border-radius: 2px;
+            box-shadow: -2px 1px 3px -2px rgba(0,0,0,0.75);
+        }
+        .remove-icon {
+            position: absolute;
+            right: 15px;
+            top: 9px;
+            cursor: pointer;
+            color: red;
+            
+            &:hover {
+                filter: brightness(70%);
+            }
+        }
     }
 </style>
