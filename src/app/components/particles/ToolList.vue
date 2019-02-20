@@ -52,6 +52,7 @@
 <style lang="scss">
     .tools-form {
         .header {
+            text-align: center;
             font-size: 20px;
             line-height: 80px;
             font-weight: 700;
