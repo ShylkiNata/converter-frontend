@@ -7,7 +7,7 @@ import VeeValidate from 'vee-validate';
 import BootstrapVue from 'bootstrap-vue';
 
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faTrash } from '@fortawesome/free-solid-svg-icons';
+import { faTrash, faFilePdf, faFileImage } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 
 import App from './App.vue';
@@ -19,7 +19,7 @@ Vue.use(VeeValidate, {
 });
 
 Vue.config.productionTip = false;
-library.add(faTrash);
+library.add(faTrash, faFilePdf, faFileImage);
 
 Vue.component('font-awesome-icon', FontAwesomeIcon);
 

@@ -7,8 +7,10 @@
             <div class="converter-item" v-for="item in items"
                  :style="{'background-color': item.color}"
                  @click="toItemPage(item.type)">
-                <div>{{item.icon}}</div>
-                <div>{{item.type}}</div>
+                <div class="converter-item-body">
+                    <font-awesome-icon :icon="item.icon" class="converter-icon"/>
+                    <div>{{item.type}}</div>
+                </div>
             </div>
         </div>
     </div>
@@ -69,11 +71,18 @@
             height: 180px;
             margin: 1px;
             text-align: center;
-            line-height: 75px;
             font-size: 18px;
             cursor: pointer;
             color: #fff;
             font-weight: 600;
+            line-height: 50px;
+
+            .converter-item-body {
+                margin-top: 50px;
+                .converter-icon {
+                    font-size: 45px;
+                }
+            }
 
             &:hover {
                 box-shadow: -2px 1px 12px -2px rgba(0,0,0,0.75);
