@@ -13,7 +13,7 @@ html, body {
   background-size: cover;
 }
 .auth-page {
-  background-image: url("../assets/bg.jpg");
+  background-image: url("../assets/bg-1.jpg");
 }
 
 .home-page {
@@ -47,4 +47,8 @@ html, body {
   background: -webkit-linear-gradient(#19b9d6, #0ba27f);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+}
+
+.navbar {
+  border-bottom: 1px solid;
 }

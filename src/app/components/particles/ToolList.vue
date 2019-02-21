@@ -67,6 +67,7 @@
         }
         .converter-item  {
             background-color: #f1f1f1;
+            border-radius: 10px;
             width: 180px;
             height: 180px;
             margin: 1px;

@@ -20,9 +20,9 @@
                     </div>
                 </div>
 
-                <div class="text-right">
-                    <button class="btn btn-primary" @click="submit">
-                        Submit
+                <div class="text-center">
+                    <button class="btn" @click="submit">
+                       <font-awesome-icon icon="arrow-right" />
                     </button>
                 </div>
             </div>
@@ -125,16 +125,25 @@
             margin: 15px 10px 0 10px ;
         }
         .card-header {
-            background-color: #007bff;
+            background-color: #1d90a5;
             color: #fff;
 
             .card-title {
-                font-size: 18px;
+                font-size: 20px;
                 font-weight: bold;
             }
         }
         .btn {
-            font-size: 14px;
+            border: 2px solid #1d90a5;
+            border-radius: 50%;
+            color: #19b9d6;
+            width: 50px;
+            height: 50px;
+            font-size: 20px;
+
+            &:hover {
+                filter: brightness(150%);
+            }
         }
     }
 </style>
