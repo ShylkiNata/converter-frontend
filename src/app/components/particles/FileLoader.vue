@@ -17,7 +17,10 @@
         <div class="file-list mt-4">
             <div class="file-item" v-for="(file,index) in files">
                 <span>{{ file.name }}</span>
-                <font-awesome-icon class="remove-icon" icon="trash" @click="remove(index)"/>
+                <font-awesome-icon class="remove-icon"
+                                   icon="trash"
+                                   @click="remove(index)"
+                                   v-if="!processing" />
             </div>
         </div>
     </div>

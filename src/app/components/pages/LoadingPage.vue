@@ -7,24 +7,27 @@
 
             <file-loader :bgColor="item.color"
                          :formats="allowedFormats"
-                         :disabled="loading"
+                         :processing="processing"
                          ref="fileLoader"/>
 
             <div class="submit-group">
                 <b-progress
-                        v-if="loading"
+                        v-if="processing"
                         class="submit-group-progress-bar"
                         :value="uploaded"
                         :max="100" show-progress animated />
                 <button class="btn btn-outline-dark submit-group-btn"
                         @click="submit"
-                        v-if="!processed"
+                        :disabled="processing"
+                        v-if="!uid"
                 >Submit</button>
                 <button class="btn btn-outline-dark submit-group-btn"
                         @click="download"
                         v-else
                 >Download</button>
-                <a :href="'http://127.0.0.1:8005/'+uid" hidden ref="zip-ref"></a>
+                <a :href="'http://127.0.0.1:8005/'+uid" hidden
+                   ref="zip-ref"
+                ></a>
             </div>
         </div>
     </div>
@@ -48,7 +51,7 @@
             return {
                 uploaded: 0,
                 loading: false,
-                processed: false,
+                processing: false,
                 uid: null
             }
         },
@@ -78,10 +81,14 @@
         },
         methods: {
             updateProgress(progress) {
-                this.uploaded = parseInt(Math.round((progress.loaded*100)/progress.total));
+                this.uploaded = parseInt(Math.round((progress.loaded*100)/progress.total))
+                if(this.uploaded === 100) {
+                    this.loading = false;
+                }
             },
             submit() {
                 this.loading = true;
+                this.processing = true;
 
                 let formData = new FormData();
 
@@ -96,12 +103,10 @@
                         onUploadProgress: progress => this.updateProgress(progress)
                     }
                 ).then(response => {
+                    this.processing = false;
                     this.uid = response.data.ok;
-                    this.loading = false;
-                    this.processed = true;
                 }).catch(error => {
-                    this.loading = false;
-                    this.processed = true;
+                    this.processing = false;
                     console.log(error);
                 });
             },
