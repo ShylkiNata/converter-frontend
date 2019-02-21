@@ -4,16 +4,17 @@
             <img src="../../assets/logo-1.png" />
             <router-link to="/" v-html="service" />
         </div>
-        <button class="navbar-toggler" type="button"
-                data-toggle="collapse"
-                data-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent"
-                aria-expanded="false"
-                aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
 
-        <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+        <b-dropdown class="navbar-toggler" right variant="link">
+            <b-dropdown-item v-for="item in navigation"
+                class="navbar-item ml-3" :class="{'active': $route.name === item}">
+                <router-link class="nav-link" :to="{name: item}">
+                    {{item}}
+                </router-link>
+            </b-dropdown-item>
+        </b-dropdown>
+
+        <div class="collapse navbar-collapse justify-content-end">
             <ul class="navbar-nav">
                 <li v-for="item in navigation"
                     class="navbar-item ml-3" :class="{'active': $route.name === item}">
@@ -41,5 +42,9 @@
 <style scoped lang="scss">
     nav {
         padding: 10px 50px;
+
+        .navbar-toggler {
+            border: none;
+        }
     }
 </style>
