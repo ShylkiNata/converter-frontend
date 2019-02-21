@@ -7,16 +7,24 @@
 
             <file-loader :bgColor="item.color"
                          :formats="allowedFormats"
-                         :disabled="processing"
+                         :disabled="loading"
                          ref="fileLoader"/>
 
             <div class="submit-group">
                 <b-progress
-                        v-if="processing"
+                        v-if="loading"
                         class="submit-group-progress-bar"
                         :value="uploaded"
                         :max="100" show-progress animated />
-                <button class="btn btn-outline-dark submit-group-btn" @click="submit()">Submit</button>
+                <button class="btn btn-outline-dark submit-group-btn"
+                        @click="submit"
+                        v-if="!processed"
+                >Submit</button>
+                <button class="btn btn-outline-dark submit-group-btn"
+                        @click="download"
+                        v-else
+                >Download</button>
+                <a :href="'http://127.0.0.1:8005/'+uid" hidden ref="zip-ref"></a>
             </div>
         </div>
     </div>
@@ -39,7 +47,9 @@
         data() {
             return {
                 uploaded: 0,
-                processing: false
+                loading: false,
+                processed: false,
+                uid: null
             }
         },
         computed: {
@@ -71,7 +81,7 @@
                 this.uploaded = parseInt(Math.round((progress.loaded*100)/progress.total));
             },
             submit() {
-                this.processing = true;
+                this.loading = true;
 
                 let formData = new FormData();
 
@@ -85,11 +95,18 @@
                     {
                         onUploadProgress: progress => this.updateProgress(progress)
                     }
-                ).then(function(){
-                    console.log('SUCCESS!!');
+                ).then(response => {
+                    this.uid = response.data.ok;
+                    this.loading = false;
+                    this.processed = true;
                 }).catch(error => {
-                    console.log('FAILURE!!', error);
+                    this.loading = false;
+                    this.processed = true;
+                    console.log(error);
                 });
+            },
+            download() {
+                this.$refs['zip-ref'].click();
             }
         }
     }
