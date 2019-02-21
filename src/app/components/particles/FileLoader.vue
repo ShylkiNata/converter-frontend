@@ -72,8 +72,10 @@
             },
             addEventListener() {
                 this.$refs.fileform.addEventListener('drop', function(e){
-                    for(let i = 0; i < e.dataTransfer.files.length; i++ ){
-                        this.files.push(e.dataTransfer.files[i]);
+                    if(!this.processing) {
+                        for(let i = 0; i < e.dataTransfer.files.length; i++ ){
+                            this.files.push(e.dataTransfer.files[i]);
+                        }
                     }
                 }.bind(this));
             }

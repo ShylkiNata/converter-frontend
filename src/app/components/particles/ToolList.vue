@@ -24,14 +24,14 @@
         ],
         computed: {
           authorized() {
-              return true;
+              return this.$store.user;
           }
         },
         methods: {
             toItemPage(type) {
                 if(!this.authorized) {
                     this.$router.push({
-                        name: 'Sign Up'
+                        name: 'Sign In'
                     });
                     return ;
                 }

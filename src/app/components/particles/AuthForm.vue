@@ -1,5 +1,5 @@
 <template>
-    <div class="form auth-form">
+    <div class="form">
         <div class="card">
             <div class="card-header blue-header">
                 <span class="card-title" v-html="formType" />
