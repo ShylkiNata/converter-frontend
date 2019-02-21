@@ -1,6 +1,9 @@
 <template>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <router-link class="navbar-brand" to="/" v-html="service" />
+        <div class="vertor-brand">
+            <img src="../../assets/logo-1.png" />
+            <router-link to="/" v-html="service" />
+        </div>
         <button class="navbar-toggler" type="button"
                 data-toggle="collapse"
                 data-target="#navbarSupportedContent"
@@ -29,7 +32,7 @@
         data() {
             return {
                 navigation: ['Home', 'Sign In', 'Sign Up'],
-                service: 'Converter & Compressor'
+                service: 'VertoR'
             }
         }
     }
@@ -38,9 +41,5 @@
 <style scoped lang="scss">
     nav {
         padding: 10px 50px;
-
-        .navbar-brand {
-            font-weight: 700;
-        }
     }
 </style>
