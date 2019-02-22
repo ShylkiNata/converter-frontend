@@ -16,10 +16,16 @@ export default {
 
         return axios[method](server.API_URL + url, data, headers)
                     .then(response => {
-                        return response.data;
+                        return Promise.resolve(response.data);
                     })
                     .catch(errors => {
-                        return errors;
+                        let error = {
+                            error: true,
+                            status: errors.response.status,
+                            message: errors.response.data.error
+                        };
+
+                        return Promise.reject(error);
                     });
     },
     getHeaders() {

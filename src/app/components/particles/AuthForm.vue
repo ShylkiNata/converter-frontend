@@ -16,8 +16,7 @@
                            class="form-control"
                     />
                     <div class="error-message">
-                        {{ errors.first(key) }}
-                        <!--{{ _.keys(user).length === index+1 ? errors.first(property) : '' }}-->
+                        {{ errors.first(key) || additionalError(index) }}
                     </div>
                 </div>
 
@@ -35,8 +34,13 @@
 </template>
 
 <script>
+    import PropertyMixin from '../../mixins/PropertyMixin';
+
     export default {
         name: "auth-form",
+        mixins: [
+            PropertyMixin
+        ],
         data() {
             return {
                 user: null,
@@ -52,12 +56,17 @@
             this.initUser();
         },
         methods: {
+            additionalError(index) {
+                return index+1 === Object.keys(this.user).length ?
+                    this.errors.first('server') : ''
+            },
             initUser() {
+                this.errors.clear();
                 this.$validator.reset();
 
                 this.user = {
-                    email: 'user@example.com',
-                    password: 'secret'
+                    email: '',
+                    password: ''
                 };
 
                 switch (this.formType) {
@@ -66,46 +75,24 @@
                         break;
                 }
             },
-            getTypeByProperty(key) {
-                switch (key) {
-                    case 'password':
-                    case 'password confirmation':
-                        return 'password';
-                    default:
-                        return 'text';
-                }
-            },
-            getRulesByProperty(key) {
-                switch(key) {
-                    case 'username':
-                        return 'required|min:6|max:64';
-                    case 'email':
-                        return 'required|min:6|max:64|email';
-                    case 'password':
-                        return 'required|min:6|max:64';
-                    case 'password confirmation':
-                        return 'required|min:6|max:64|confirmed:password';
-                }
-            },
-            uppercased(key) {
-                let words = [];
-                key.split(' ').forEach(word => {
-                    words.push(word.charAt(0).toUpperCase() + word.slice(1));
-                });
-
-                return words.join(' ');
-            },
             dispatch() {
                 this.$store.dispatch('auth', {
                         action: this.$route.path,
                         data: this.user
                     })
-                    .then(() => {
+                    .then(response => {
+                        if(response.error) {
+                            this.processing = false;
+
+                            this.$validator.errors.add({
+                                field: 'server',
+                                msg: response.message,
+                                scope: this.$options.scope,
+                            });
+
+                            return ;
+                        }
                         this.$router.push({name: 'Home'});
-                        this.processing = false;
-                    }).catch(errors => {
-                        console.log(errors);
-                        this.processing = false;
                     })
             },
             submit() {
@@ -117,9 +104,6 @@
                         } else {
                             this.processing = false;
                         }
-                    }).catch(errors => {
-                        console.log(errors);
-                        this.processing = false;
                     })
             }
         },
