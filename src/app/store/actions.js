@@ -4,20 +4,21 @@ export default {
         return this._vm.apiClient.request('post', url, payload.data)
             .then(response => {
                 this._vm.apiClient.auth.token = response.token;
-                $store.commit('authenticate', response.data);
+                $store.commit('authenticate', response);
                 return response;
             });
     },
     logout($store, payload) {
-        let url = `auth${payload.logout}`;
-        return this._vm.apiClient.request('post', url, payload.data)
+        console.log('test');
+        let url = `auth/logout`;
+        return this._vm.apiClient.request('post', url)
             .then(response => {
                 this._vm.apiClient.auth.token = null;
                 $store.commit('authenticate', null);
                 return response;
             });
     },
-    uploadFiles(context, payload) {
+    uploadFiles($store, payload) {
         //return this.axios.post(`${url}/${payload.action}`, payload);
-    }
+    },
 }

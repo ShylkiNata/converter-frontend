@@ -101,7 +101,7 @@
                         data: this.user
                     })
                     .then(() => {
-                        //this.$router.push({name: 'Home'});
+                        this.$router.push({name: 'Home'});
                         this.processing = false;
                     }).catch(errors => {
                         console.log(errors);

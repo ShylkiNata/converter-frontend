@@ -1,40 +1,41 @@
 <template>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="vertor-brand">
-            <img src="../../assets/logo-1.png" />
+            <router-link to="/">
+                <img src="../../../assets/logo-1.png" />
+            </router-link>
             <router-link to="/" v-html="service" />
         </div>
 
         <b-dropdown class="navbar-toggler" right variant="link">
-            <b-dropdown-item v-for="item in navigation"
-                class="navbar-item ml-3" :class="{'active': $route.name === item}">
-                <router-link class="nav-link" :to="{name: item}">
-                    {{item}}
-                </router-link>
-            </b-dropdown-item>
+            <nav-item el="b-dropdown-item" :cls="''" />
         </b-dropdown>
 
         <div class="collapse navbar-collapse justify-content-end">
             <ul class="navbar-nav">
-                <li v-for="item in navigation"
-                    class="navbar-item ml-3" :class="{'active': $route.name === item}">
-                    <router-link class="nav-link" :to="{name: item}">
-                        {{item}}
-                    </router-link>
-                </li>
+                <nav-item el="li" :cls="'navbar-item ml-3'" :inline="true" />
             </ul>
         </div>
     </nav>
 </template>
 
 <script>
+    import NavItem from './NavItem';
+
     export default {
+        components: {
+            NavItem
+        },
         name: "nav-bar",
         data() {
             return {
-                navigation: ['Home', 'Sign In', 'Sign Up'],
                 service: 'VertoR'
             }
+        },
+        computed: {
+            authenticated() {
+                return this.$store.state.user;
+            },
         }
     }
 </script>

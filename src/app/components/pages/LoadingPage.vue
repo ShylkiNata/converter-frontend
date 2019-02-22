@@ -34,7 +34,7 @@
 </template>
 
 <script>
-    import NavBar from "../particles/NavBar";
+    import NavBar from "../particles/navbar/NavBar";
     import FileLoader from "../particles/FileLoader";
     import ToolsMixin from "../../mixins/ToolList";
 

@@ -7,14 +7,14 @@
 
 <script>
   import AuthForm from '../particles/AuthForm';
-  import NavBar from "../particles/NavBar";
+  import NavBar from "../particles/navbar/NavBar";
 
   export default {
     name: 'auth-page',
     components: {
       NavBar,
       AuthForm
-    }
+    },
   }
 </script>
 

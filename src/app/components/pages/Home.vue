@@ -6,7 +6,7 @@
 </template>
 
 <script>
-    import NavBar from "../particles/NavBar";
+    import NavBar from "../particles/navbar/NavBar";
     import ToolsPreview from "../particles/ToolsPreview";
 
     export default {

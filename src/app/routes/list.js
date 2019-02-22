@@ -25,6 +25,6 @@ export default [
     {
         path: '/tool/:tool/:type',
         name: 'Loading Page',
-        component: LoadingPage
+        component: LoadingPage,
     }
 ];

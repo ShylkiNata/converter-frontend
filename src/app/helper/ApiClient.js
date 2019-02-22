@@ -10,7 +10,8 @@ import server from '../../configs/server.js';
 export default {
     auth: AuthMiddleware,
 
-    request(method, url, data) {
+    request(method, url, data = []) {
+
         let headers = this.getHeaders();
 
         return axios[method](server.API_URL + url, data, headers)

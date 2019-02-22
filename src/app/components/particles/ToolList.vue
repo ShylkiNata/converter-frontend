@@ -24,7 +24,7 @@
         ],
         computed: {
           authorized() {
-              return this.$store.user;
+              return this.$store.state.user;
           }
         },
         methods: {
