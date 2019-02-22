@@ -7,7 +7,7 @@
                     <input class="file-input"
                            type="file"
                            title="" multiple
-                           :disabled="processing"
+                           :disabled="disabled"
                            :accept="formats"
                            ref="clickLoader"
                            @change="uploadFile">
@@ -15,10 +15,9 @@
             </form>
         </div>
         <div class="file-list mt-4">
-            <b-alert variant="danger" dismissible :show="Boolean(fileErrors.length)">
-                <div v-for="item in fileErrors">
-                    {{item}}
-                </div>
+            <b-alert variant="danger" dismissible :show="error.visibility" fade
+                     @dismissed="hideErrors">
+                <div v-for="error in error.bag" v-html="error" />
             </b-alert>
         </div>
         <div class="file-list mt-1">
@@ -51,16 +50,36 @@
         data() {
             return {
                 files: [],
-                uploadPercentage: 0,
-                fileErrors: []
+                fileErrors: ['test'],
+                showError: false,
+                error: {
+                    bag: [],
+                    visibility: false
+                }
             }
         },
         computed: {
             shadedBg() {
                 return this.shadeHexColor(this.bgColor);
+            },
+            disabled() {
+                return this.processing || this.files.length === 5;
+            }
+        },
+        watch: {
+            'error.bag'() {
+                if(Boolean(this.error.bag.length)) {
+                    this.error.visibility = true;
+                }
             }
         },
         methods: {
+            hideErrors() {
+                this.error = {
+                    bag: [],
+                    visibility: false
+                };
+            },
             remove(removed) {
                 this.files = this.files.filter((item, index) => {
                     return index !== removed;
@@ -69,10 +88,14 @@
             validateFileSet(files) {
                 for(let i = 0; i < files.length; i++ ){
                     if(this.formats.includes(files[i].type)) {
-                        this.files.push(files[i]);
+                        if(files[i].size < 10 ** 6) {
+                            this.files.push(files[i]);
+                            continue;
+                        }
+                        this.error.bag.push(`The <b>${ files[i].name }</b> is too large.`);
                     }
                     else {
-                        this.fileErrors.push(`Type of the ${ files[i].name } is not allowed.`);
+                        this.error.bag.push(`Type of the <b>${ files[i].name }</b> is not allowed.`);
                     }
                 }
             },
@@ -94,7 +117,7 @@
             },
             addEventListener() {
                 this.$refs.fileform.addEventListener('drop', function(e){
-                    if(!this.processing) {
+                    if(!this.disabled) {
                         this.validateFileSet(e.dataTransfer.files);
                     }
                 }.bind(this));
