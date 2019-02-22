@@ -11,6 +11,7 @@
                            :key="`${formType}${key}`"
                            :placeholder="uppercased(key)"
                            :type="getTypeByProperty(key)"
+                           :disabled="processing"
                            v-validate="getRulesByProperty(key)"
                            class="form-control"
                     />
@@ -21,7 +22,10 @@
                 </div>
 
                 <div class="text-center">
-                    <button class="btn" @click="submit">
+                    <button class="btn"
+                            @click="submit"
+                            :disabled="processing"
+                    >
                        <font-awesome-icon icon="arrow-right" />
                     </button>
                 </div>
@@ -35,7 +39,8 @@
         name: "auth-form",
         data() {
             return {
-                user: null
+                user: null,
+                processing: false
             }
         },
         computed: {
@@ -51,8 +56,8 @@
                 this.$validator.reset();
 
                 this.user = {
-                    email: null,
-                    password: null
+                    email: 'user@example.com',
+                    password: 'secret'
                 };
 
                 switch (this.formType) {
@@ -91,21 +96,30 @@
                 return words.join(' ');
             },
             dispatch() {
-                this.$store.dispatch('auth', this.user)
+                this.$store.dispatch('auth', {
+                        action: this.$route.path,
+                        data: this.user
+                    })
                     .then(() => {
-                        //this.$router.push({name: 'ConverterCompressor'})
+                        //this.$router.push({name: 'Home'});
+                        this.processing = false;
                     }).catch(errors => {
                         console.log(errors);
+                        this.processing = false;
                     })
             },
             submit() {
+                this.processing = true;
                 this.$validator.validate()
                     .then(result => {
                         if(result) {
                             this.dispatch();
+                        } else {
+                            this.processing = false;
                         }
                     }).catch(errors => {
                         console.log(errors);
+                        this.processing = false;
                     })
             }
         },
