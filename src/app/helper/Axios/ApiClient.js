@@ -19,14 +19,7 @@ export default {
                         return Promise.resolve(response.data);
                     })
                     .catch(errors => {
-                        let response = errors.response;
-                        let error = {
-                            error: true,
-                            message: response.data.error ? response.data.error :
-                                `Error ${response.status}: ${response.statusText}`
-                        };
-
-                        return Promise.reject(error);
+                        throw this.getError(errors);
                     });
     },
     getHeaders() {
@@ -35,5 +28,16 @@ export default {
                 Authorization: 'Bearer ' + this.auth.token
             }
         }
+    },
+    getError(errors) {
+        let response = errors.response;
+        let message = 'Something went wrong. Please, try again later';
+
+        if(response) {
+            message = response.data.error ? response.data.error :
+                `Error ${response.status}: ${response.statusText}`;
+        }
+
+        return message;
     }
 }

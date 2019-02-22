@@ -82,18 +82,16 @@
                         data: this.user
                     })
                     .then(response => {
-                        if(response.error) {
-                            this.processing = false;
-
-                            this.$validator.errors.add({
-                                field: 'server',
-                                msg: response.message,
-                                scope: this.$options.scope,
-                            });
-
-                            return ;
-                        }
                         this.$router.push({name: 'Home'});
+                    })
+                    .catch(error => {
+                        this.processing = false;
+
+                        this.$validator.errors.add({
+                            field: 'server',
+                            msg: error,
+                            scope: this.$options.scope,
+                        });
                     })
             },
             submit() {

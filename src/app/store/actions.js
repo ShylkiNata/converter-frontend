@@ -8,9 +8,6 @@ export default {
                 $store.commit('authenticate', response);
 
                 return response;
-            })
-            .catch(errors => {
-                return errors;
             });
     },
     logout($store, payload) {
