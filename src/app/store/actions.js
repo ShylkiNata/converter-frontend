@@ -20,6 +20,10 @@ export default {
             });
     },
     uploadFiles($store, payload) {
-        //return this.axios.post(`${url}/${payload.action}`, payload);
+        let url = payload.url;
+        return this._vm.apiClient.request('post', url, payload.data)
+            .then(response => {
+                return response;
+            });
     },
 }

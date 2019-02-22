@@ -11,11 +11,6 @@
                          ref="fileLoader"/>
 
             <div class="submit-group">
-                <b-progress
-                        v-if="processing"
-                        class="submit-group-progress-bar"
-                        :value="uploaded"
-                        :max="100" show-progress animated />
                 <button class="btn btn-outline-dark submit-group-btn"
                         @click="submit"
                         :disabled="processing"
@@ -49,7 +44,6 @@
         ],
         data() {
             return {
-                uploaded: 0,
                 loading: false,
                 processing: false,
                 uid: null
@@ -82,12 +76,6 @@
             },
         },
         methods: {
-            updateProgress(progress) {
-                this.uploaded = parseInt(Math.round((progress.loaded*100)/progress.total))
-                if(this.uploaded === 100) {
-                    this.loading = false;
-                }
-            },
             submit() {
                 this.loading = true;
                 this.processing = true;
@@ -98,18 +86,16 @@
                     formData.append(file.name, file) ;
                 });
 
-                this.axios.post(
-                    `http://127.0.0.1:8005/api/${this.tool}/${this.type}`,
-                    formData,
-                    {
-                        onUploadProgress: progress => this.updateProgress(progress)
-                    }
-                ).then(response => {
-                    this.processing = false;
-                    this.uid = response.data.ok;
-                }).catch(error => {
-                    this.processing = false;
-                    console.log(error);
+                this.$store.dispatch('uploadFiles', {
+                        data: formData,
+                        url: `${this.tool}/${this.type}`
+                    })
+                    .then(response => {
+                        this.processing = false;
+                        this.uid = response.data;
+                    }).catch(error => {
+                        this.processing = false;
+                        console.log(error);
                 });
             },
             download() {
