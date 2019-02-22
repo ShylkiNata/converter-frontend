@@ -7,7 +7,7 @@
 
 <script>
     import NavBar from "../particles/navbar/NavBar";
-    import ToolsPreview from "../particles/ToolsPreview";
+    import ToolsPreview from "../particles/tools/ToolsPreview";
 
     export default {
         name: "Home",

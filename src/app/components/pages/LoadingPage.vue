@@ -74,6 +74,8 @@
                 switch (type) {
                     case 'pdf':
                         return 'application/pdf';
+                    case 'jpg':
+                        return 'image/jpeg, image/jpg';
                     default:
                         return `image/${type}`
                 }

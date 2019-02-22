@@ -92,6 +92,7 @@
                     })
             },
             submit() {
+                this.errors.clear();
                 this.processing = true;
                 this.$validator.validate()
                     .then(result => {

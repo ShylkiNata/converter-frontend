@@ -13,7 +13,7 @@
 </template>
 
 <script>
-    import ToolsMixin from "../../mixins/ToolList";
+    import ToolsMixin from "../../../mixins/ToolList";
     import ToolList from "./ToolList";
 
     export default {

@@ -15,6 +15,13 @@
             </form>
         </div>
         <div class="file-list mt-4">
+            <b-alert variant="danger" dismissible :show="Boolean(fileErrors.length)">
+                <div v-for="item in fileErrors">
+                    {{item}}
+                </div>
+            </b-alert>
+        </div>
+        <div class="file-list mt-1">
             <div class="file-item" v-for="(file,index) in files">
                 <span>{{ file.name }}</span>
                 <font-awesome-icon class="remove-icon"
@@ -28,6 +35,7 @@
 
 <script>
     import ColorMixin from '../../mixins/ColorConverter';
+    import ErrorMixin from '../../mixins/Errors';
 
     export default {
         name: "file-loader",
@@ -37,12 +45,14 @@
           'processing'
         ],
         mixins: [
-          ColorMixin
+          ColorMixin,
+          ErrorMixin
         ],
         data() {
             return {
                 files: [],
-                uploadPercentage: 0
+                uploadPercentage: 0,
+                fileErrors: []
             }
         },
         computed: {
@@ -56,10 +66,22 @@
                     return index !== removed;
                 });
             },
+            validateFileSet(files) {
+                for(let i = 0; i < files.length; i++ ){
+                    if(this.formats.includes(files[i].type)) {
+                        this.files.push(files[i]);
+                    }
+                    else {
+                        this.fileErrors.push(`Type of the ${ files[i].name } is not allowed.`);
+                    }
+                }
+            },
             uploadFile(event) {
-                let fileList = event.target.files;
-                this.files.push(fileList[0]);
-                this.$refs.clickLoader.value = null;
+                new Promise(() => {
+                    this.validateFileSet(event.target.files);
+                }).then(() => {
+                    this.$refs.clickLoader.value = null;
+                });
             },
             setInputEvents() {
                 let events = ['drag', 'dragstart', 'dragend', 'dragover', 'dragenter', 'dragleave', 'drop'];
@@ -73,9 +95,7 @@
             addEventListener() {
                 this.$refs.fileform.addEventListener('drop', function(e){
                     if(!this.processing) {
-                        for(let i = 0; i < e.dataTransfer.files.length; i++ ){
-                            this.files.push(e.dataTransfer.files[i]);
-                        }
+                        this.validateFileSet(e.dataTransfer.files);
                     }
                 }.bind(this));
             }
