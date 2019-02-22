@@ -14,6 +14,7 @@
                            :disabled="processing"
                            v-validate="getRulesByProperty(key)"
                            class="form-control"
+                           :ref="key"
                     />
                     <div class="error-message">
                         {{ errors.first(key) || additionalError(index) }}

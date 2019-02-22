@@ -1,18 +1,15 @@
 import Vue from 'vue';
-
-import VeeValidate from 'vee-validate';
 import BootstrapVue from 'bootstrap-vue';
 
 import App from './App.vue';
 
 Vue.use(BootstrapVue);
-Vue.use(VeeValidate, {
-  events: 'blur',
-});
 
 import router from './routes/index.js';
 import store from './store/index.js';
-import apiClient from './helper/ApiClient.js';
+
+import apiClient from './helper/Axios/ApiClient.js';
+import validator from './helper/VeeValidator.js';
 
 import './helper/FontAwesomeIcon';
 

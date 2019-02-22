@@ -5,7 +5,7 @@ import VueAxios from 'vue-axios';
 Vue.use(VueAxios, axios);
 
 import AuthMiddleware from './AuthMiddleware.js';
-import server from '../../configs/server.js';
+import server from '../../../configs/server.js';
 
 export default {
     auth: AuthMiddleware,
@@ -19,10 +19,11 @@ export default {
                         return Promise.resolve(response.data);
                     })
                     .catch(errors => {
+                        let response = errors.response;
                         let error = {
                             error: true,
-                            status: errors.response.status,
-                            message: errors.response.data.error
+                            message: response.data.error ? response.data.error :
+                                `Error ${response.status}: ${response.statusText}`
                         };
 
                         return Promise.reject(error);
