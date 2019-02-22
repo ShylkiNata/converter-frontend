@@ -3,7 +3,7 @@ export default {
         getTypeByProperty(key) {
             switch (key) {
                 case 'password':
-                case 'password confirmation':
+                case 'password_confirmation':
                     return 'password';
                 default:
                     return 'text';
@@ -17,7 +17,7 @@ export default {
                     return 'required|min:6|max:64|email';
                 case 'password':
                     return 'required|min:6|max:64';
-                case 'password confirmation':
+                case 'password_confirmation':
                     return 'required|min:6|max:64|confirmed:password';
             }
         },
@@ -27,7 +27,7 @@ export default {
                 words.push(word.charAt(0).toUpperCase() + word.slice(1));
             });
 
-            return words.join(' ');
+            return words.join(' ').replace(/_/g, ' ');
         },
     }
 }

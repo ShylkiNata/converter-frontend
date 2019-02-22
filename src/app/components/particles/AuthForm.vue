@@ -36,11 +36,13 @@
 
 <script>
     import PropertyMixin from '../../mixins/PropertyMixin';
+    import ErrorMixin from '../../mixins/Errors';
 
     export default {
         name: "auth-form",
         mixins: [
-            PropertyMixin
+            PropertyMixin,
+            ErrorMixin
         ],
         data() {
             return {
@@ -72,7 +74,7 @@
 
                 switch (this.formType) {
                     case 'Sign Up':
-                        this.user['password confirmation'] = null;
+                        this.user['password_confirmation'] = null;
                         break;
                 }
             },
@@ -81,17 +83,12 @@
                         action: this.$route.path,
                         data: this.user
                     })
-                    .then(response => {
+                    .then(() => {
                         this.$router.push({name: 'Home'});
                     })
                     .catch(error => {
                         this.processing = false;
-
-                        this.$validator.errors.add({
-                            field: 'server',
-                            msg: error,
-                            scope: this.$options.scope,
-                        });
+                        this.handleErrors(error);
                     })
             },
             submit() {

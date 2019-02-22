@@ -4,7 +4,7 @@ import VeeValidate from 'vee-validate';
 const dictionary = {
     en: {
         attributes: {
-            'password confirmation': 'password'
+            'password_confirmation': 'password'
         }
     },
 };
