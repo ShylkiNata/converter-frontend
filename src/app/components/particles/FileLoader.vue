@@ -5,7 +5,17 @@
               class="file-uploader__drag-drop">
 
             <div class="file-uploader--shadow" :style="{'background-color': shadedBg }">
-                <span class="title">Drag & Drop Files</span>
+                <span class="file-uploader__drag-drop__title">
+                    <div class="file-uploader__drag-drop__icon">
+                        <font-awesome-icon icon="file-upload" />
+                    </div>
+                    <div>
+                        Drop file here
+                    </div>
+                    <div>
+                        <u>Choose file</u>
+                    </div>
+                </span>
                 <input class="file-uploader__input"
                        type="file"
                        title="" multiple

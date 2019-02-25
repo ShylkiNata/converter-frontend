@@ -1,5 +1,6 @@
 .navbar {
   border-bottom: 1px solid;
+  padding: 10px 20px;
 
   .navbar--vertor__brand {
     .brand__logo {
@@ -29,6 +30,43 @@
 
       &:hover {
         filter: brightness(90%);
+      }
+    }
+  }
+
+  .dropdown--vertor {
+      .dropdown-toggle {
+        background-color: #fff;
+        border-color: $color-aqua-dark;
+        color: $color-aqua-dark;
+      }
+
+    .dropdown-menu {
+
+      .row {
+        margin: 0;
+      }
+
+      .dropdown-item {
+        margin: 0;
+        background-color: $color-white;
+
+        &:hover {
+          background-color: $color-gray-light;
+          color: $color-aqua-dark;;
+        }
+        &.active {
+          background-color: $color-aqua-dark;
+          color: $color-white;
+        }
+      }
+
+      .nav-link {
+        color: $color-aqua-dark;
+      }
+
+      .router-link-active {
+        color: $color-white;
       }
     }
   }

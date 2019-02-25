@@ -13,7 +13,7 @@
     computed: {
       authorized() {
             return this.$store.state.user;
-        }
+      }
     }
   }
 </script>

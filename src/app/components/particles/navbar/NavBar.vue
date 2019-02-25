@@ -1,5 +1,5 @@
 <template>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg bg-light">
         <div class="navbar--vertor__brand">
             <router-link to="/" >
                 <img src="../../../assets/logo-1.png" class="brand__logo"/>
@@ -7,7 +7,7 @@
             <router-link to="/" v-html="service" class="brand__title"/>
         </div>
 
-        <b-dropdown class="navbar-toggler" right variant="link">
+        <b-dropdown class="navbar-toggler dropdown--vertor m-2" right>
             <nav-item el="b-dropdown-item" :cls="''" />
         </b-dropdown>
 
