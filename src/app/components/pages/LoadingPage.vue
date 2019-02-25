@@ -14,13 +14,13 @@
                 <button class="btn btn-outline-dark submit-group-btn"
                         @click="submit"
                         :disabled="processing"
-                        v-if="!uid"
+                        v-if="!pathToDownload"
                 >Submit</button>
                 <button class="btn btn-outline-dark submit-group-btn"
                         @click="download"
                         v-else
                 >Download</button>
-                <a :href="'http://127.0.0.1:8005/'+uid" hidden
+                <a :href="pathToDownload" hidden
                    ref="zip-ref"
                 ></a>
             </div>
@@ -46,7 +46,7 @@
             return {
                 loading: false,
                 processing: false,
-                uid: null
+                pathToDownload: null
             }
         },
         computed: {
@@ -80,27 +80,37 @@
                 this.loading = true;
                 this.processing = true;
 
+                if(!this.$refs.fileLoader.validate()) {
+                    this.loading = false;
+                    this.processing = false;
+                    return ;
+                }
+
+                this.$store.dispatch('uploadFiles', this.getData())
+                    .then(response => {
+                        this.processing = false;
+                        this.pathToDownload = response.data;
+                    }).catch(error => {
+                        this.processing = false;
+                        this.$refs.fileLoader.error.bag.push(error);
+                        console.log(error);
+                });
+            },
+            download() {
+                this.$refs['zip-ref'].click();
+            },
+            getData() {
                 let formData = new FormData();
 
                 this.$refs.fileLoader.files.forEach(file => {
                     formData.append(file.name, file) ;
                 });
 
-                this.$store.dispatch('uploadFiles', {
-                        data: formData,
-                        url: `${this.tool}/${this.type}`
-                    })
-                    .then(response => {
-                        this.processing = false;
-                        this.uid = response.data;
-                    }).catch(error => {
-                        this.processing = false;
-                        console.log(error);
-                });
+                return {
+                    data: formData,
+                    url: `${this.tool}/${this.type}`
+                }
             },
-            download() {
-                this.$refs['zip-ref'].click();
-            }
         }
     }
 </script>

@@ -80,6 +80,16 @@
                     visibility: false
                 };
             },
+            validate() {
+                this.hideErrors();
+
+                if(!this.files.length) {
+                    this.error.bag.push('Please, select the files to handle.');
+                    return false;
+                }
+
+                return true;
+            },
             remove(removed) {
                 this.files = this.files.filter((item, index) => {
                     return index !== removed;
