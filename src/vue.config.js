@@ -9,7 +9,7 @@ module.exports = {
   },
   chainWebpack: config => {
     config.resolve.alias
-        .set('assets', `${appPath}/assets`)
+        .set('assets', `${appPath}/assets`);
   },
 };
 

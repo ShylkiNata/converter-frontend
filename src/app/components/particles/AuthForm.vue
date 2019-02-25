@@ -1,5 +1,5 @@
 <template>
-    <div class="form">
+    <div class="page--auth__card">
         <div class="card">
             <div class="card-header blue-header">
                 <span class="card-title" v-html="formType" />
@@ -111,34 +111,3 @@
         }
     }
 </script>
-
-<style lang="scss" scoped>
-    .auth-form {
-        max-width: 455px;
-
-        .card-body {
-            margin: 15px 10px 0 10px ;
-        }
-        .card-header {
-            background-color: #1d90a5;
-            color: #fff;
-
-            .card-title {
-                font-size: 20px;
-                font-weight: bold;
-            }
-        }
-        .btn {
-            border: 2px solid #1d90a5;
-            border-radius: 50%;
-            color: #19b9d6;
-            width: 50px;
-            height: 50px;
-            font-size: 20px;
-
-            &:hover {
-                filter: brightness(150%);
-            }
-        }
-    }
-</style>

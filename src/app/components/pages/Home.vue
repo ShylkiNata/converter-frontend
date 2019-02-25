@@ -1,7 +1,7 @@
 <template>
-    <div class="page home-page">
+    <div class="page page--home">
         <nav-bar></nav-bar>
-        <tools-preview class="col-sm-12 col-md-8"/>
+        <tools-preview class="container"/>
         <footer></footer>
     </div>
 </template>
@@ -18,7 +18,3 @@
         }
     }
 </script>
-
-<style scoped>
-
-</style>

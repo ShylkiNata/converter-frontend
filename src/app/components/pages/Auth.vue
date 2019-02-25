@@ -1,7 +1,7 @@
 <template>
-  <div class="page auth-page">
+  <div class="page page--auth">
     <nav-bar />
-    <auth-form class="auth-form col-sm-12 col-md-6 col-lg-5 col-xl-4" />
+    <auth-form class="container"/>
   </div>
 </template>
 

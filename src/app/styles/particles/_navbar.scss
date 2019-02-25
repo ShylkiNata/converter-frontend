@@ -1,0 +1,35 @@
+.navbar {
+  border-bottom: 1px solid;
+
+  .navbar--vertor__brand {
+    .brand__logo {
+      width: 50px;
+      height: 50px;
+      cursor: pointer;
+      border-radius: 50%;
+      -webkit-transition: -webkit-transform .8s ease-in-out;
+      transition: transform .8s ease-in-out;
+
+      &:hover {
+        filter: brightness(90%);
+        transform: rotate(360deg);
+      }
+    }
+
+    .brand__title {
+      font-weight: 600;
+      text-decoration: none;
+      font-size: 25px;
+      line-height: 50px;
+      margin: 0 0 0 15px;
+      vertical-align: bottom;
+      background: -webkit-linear-gradient(#19b9d6, #0ba27f);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+
+      &:hover {
+        filter: brightness(90%);
+      }
+    }
+  }
+}

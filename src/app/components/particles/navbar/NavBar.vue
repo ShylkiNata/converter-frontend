@@ -1,10 +1,10 @@
 <template>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="vertor-brand">
-            <router-link to="/">
-                <img src="../../../assets/logo-1.png" />
+        <div class="navbar--vertor__brand">
+            <router-link to="/" >
+                <img src="../../../assets/logo-1.png" class="brand__logo"/>
             </router-link>
-            <router-link to="/" v-html="service" />
+            <router-link to="/" v-html="service" class="brand__title"/>
         </div>
 
         <b-dropdown class="navbar-toggler" right variant="link">
@@ -40,12 +40,3 @@
     }
 </script>
 
-<style scoped lang="scss">
-    nav {
-        padding: 10px 50px;
-
-        .navbar-toggler {
-            border: none;
-        }
-    }
-</style>
