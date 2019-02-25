@@ -11,10 +11,6 @@ module.exports = {
     },
   },
   configureWebpack: {
-    resolve: {
-      alias: { '@': appPath },
-      symlinks: false,
-    },
     entry: { app: `${appPath}/main.js` },
     module: {
       rules: [
@@ -32,20 +28,14 @@ module.exports = {
       filename: 'js/script.js',
       chunkFilename: 'js/[id].js',
     },
-    plugins: [],
   },
-  chainWebpack: (config) => {
-    config.plugin('html').tap((args) => {
-      args[0].hash = true;
-      return args;
-    });
-    config.plugin('copy').tap(([pathConfigs]) => {
-      pathConfigs.unshift({
-        from: `${appPath}/assets/.htaccess`,
-        to: `${outputPath}/.htaccess`,
-        toType: 'file',
-      });
-      return [pathConfigs];
-    });
+  chainWebpack: config => {
+    config.plugin('html').tap(htmlPluginArgs);
+    config.resolve.alias.set('@', appPath);
   },
 };
+
+function htmlPluginArgs(args) {
+    args[0].hash = true;
+    return args;
+}
