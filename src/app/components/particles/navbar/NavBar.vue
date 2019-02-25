@@ -12,7 +12,7 @@
         </b-dropdown>
 
         <div class="collapse navbar-collapse justify-content-end">
-            <ul class="navbar-nav">
+            <ul class="navbar-nav row">
                 <nav-item el="li" :cls="'navbar-item'" :inline="true" />
             </ul>
         </div>

@@ -107,7 +107,7 @@
         watch: {
             '$route.name'() {
                 this.initUser();
-            }
+            },
         }
     }
 </script>

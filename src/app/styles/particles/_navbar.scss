@@ -67,7 +67,6 @@
 
         &:hover {
           background-color: $color-gray-light;
-          color: $color-aqua-dark;;
         }
         &.active {
           background-color: $color-aqua-dark;
@@ -81,6 +80,10 @@
 
       .router-link-active {
         color: $color-white;
+      }
+
+      .nav-link--logout {
+        color: $color-aqua-dark;
       }
     }
   }
