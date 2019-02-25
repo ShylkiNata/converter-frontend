@@ -8,6 +8,7 @@
             <file-loader :bgColor="item.color"
                          :formats="allowedFormats"
                          :processing="processing"
+                         @change="pathToDownload = null"
                          ref="fileLoader"/>
 
             <div class="submit-group">
@@ -111,7 +112,7 @@
                     url: `${this.tool}/${this.type}`
                 }
             },
-        }
+        },
     }
 </script>
 

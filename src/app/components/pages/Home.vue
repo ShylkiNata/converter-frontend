@@ -2,6 +2,7 @@
     <div class="page home-page">
         <nav-bar></nav-bar>
         <tools-preview class="col-sm-12 col-md-8"/>
+        <footer></footer>
     </div>
 </template>
 

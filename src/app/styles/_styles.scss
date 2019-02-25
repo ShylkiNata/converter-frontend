@@ -1,19 +1,29 @@
 @import url('https://fonts.googleapis.com/css?family=Muli');
 
-html, body {
-  width: 100%;
-  height: 100%;
+html {
   font-family: 'Muli', sans-serif;
 }
 
 .page {
+  position: fixed;
+  bottom: 0;
   width: 100%;
   height: 100%;
-  background-repeat: no-repeat;
-  background-size: cover;
+
+
+  footer {
+    height: 100px;
+    background-image: url("~assets/town.png");
+    background-size: contain;
+    background-repeat: repeat-x;
+  }
 }
+
 .auth-page {
-  background-image: url("../assets/bg-1.jpg");
+  //background-image: url("../assets/bg-1.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
 }
 
 .home-page {

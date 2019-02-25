@@ -100,6 +100,7 @@
                     if(this.formats.includes(files[i].type)) {
                         if(files[i].size < 10 ** 6) {
                             this.files.push(files[i]);
+                            this.$emit('change');
                             continue;
                         }
                         this.error.bag.push(`The <b>${ files[i].name }</b> is too large.`);

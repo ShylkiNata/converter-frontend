@@ -18,10 +18,3 @@
   }
 </script>
 
-<style lang="scss">
-  .auth-form {
-    height: 100%;
-    top: 20%;
-  }
-</style>
-
