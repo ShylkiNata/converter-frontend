@@ -1,9 +1,9 @@
 <template>
-    <div class="page home-page">
+    <div class="page page--home">
         <nav-bar />
 
-        <div class="container col-sm-12 col-md-7">
-            <div class="title"> {{ item.type }} </div>
+        <div class="container tool--container">
+            <div class="tool--container__title"> {{ item.type }} </div>
 
             <file-loader :bgColor="item.color"
                          :formats="allowedFormats"
@@ -11,13 +11,13 @@
                          @change="pathToDownload = null"
                          ref="fileLoader"/>
 
-            <div class="submit-group">
-                <button class="btn btn-outline-dark submit-group-btn"
+            <div class="tool--container__actions">
+                <button class="btn btn-outline-dark container__btn"
                         @click="submit"
                         :disabled="processing"
                         v-if="!pathToDownload"
                 >Submit</button>
-                <button class="btn btn-outline-dark submit-group-btn"
+                <button class="btn btn-outline-dark container__btn"
                         @click="download"
                         v-else
                 >Download</button>
@@ -115,30 +115,3 @@
         },
     }
 </script>
-
-<style scoped lang="scss">
-    .container {
-        display:block;
-        margin: auto;
-        position: relative;
-
-        .title {
-            text-align: center;
-            line-height: 70px;
-            font-size: 20px;
-            font-weight: 700;
-        }
-    }
-    .submit-group {
-        display: flex;
-        flex-wrap: wrap;
-        padding: 20px;
-        justify-content: flex-end;
-
-        .submit-group-progress-bar {
-            flex: 1;
-            margin-right: 20px;
-            align-self: center;
-        }
-    }
-</style>

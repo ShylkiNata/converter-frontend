@@ -1,0 +1,25 @@
+.tool--container {
+    display:block;
+    margin: auto;
+    position: relative;
+
+    .tool--container__title {
+        text-align: center;
+        line-height: 70px;
+        font-size: 20px;
+        font-weight: 700;
+    }
+
+    .tool--container__actions {
+        display: flex;
+        flex-wrap: wrap;
+        padding: 20px;
+        justify-content: flex-end;
+
+        .container__btn {
+            flex: 1;
+            margin-right: 20px;
+            align-self: center;
+        }
+    }
+}
