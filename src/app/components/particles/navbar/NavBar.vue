@@ -13,7 +13,7 @@
 
         <div class="collapse navbar-collapse justify-content-end">
             <ul class="navbar-nav">
-                <nav-item el="li" :cls="'navbar-item ml-3'" :inline="true" />
+                <nav-item el="li" :cls="'navbar-item'" :inline="true" />
             </ul>
         </div>
     </nav>

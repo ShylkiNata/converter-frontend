@@ -1,9 +1,25 @@
 .navbar {
   border-bottom: 1px solid;
-  padding: 10px 20px;
+
+  .navbar-nav {
+    padding-right: 25px;
+
+    .nav-link {
+      color: $color-aqua-dark;
+
+      &:hover {
+        color: $color-aqua-light
+      }
+    }
+    .router-link-active {
+      font-weight: 600;
+      color: $color-aqua-light
+    }
+  }
 
   .navbar--vertor__brand {
     .brand__logo {
+      margin-left: 15px;
       width: 50px;
       height: 50px;
       cursor: pointer;
@@ -42,11 +58,9 @@
       }
 
     .dropdown-menu {
-
       .row {
         margin: 0;
       }
-
       .dropdown-item {
         margin: 0;
         background-color: $color-white;
