@@ -19,7 +19,7 @@
                 <input class="file-uploader__input"
                        type="file"
                        title="" multiple
-                       :disabled="disabled"
+                       :disabled="processing"
                        :accept="formats"
                        ref="clickLoader"
                        @change="uploadFile">
@@ -76,9 +76,6 @@
             shadedBg() {
                 return this.shadeHexColor(this.bgColor);
             },
-            disabled() {
-                return this.processing || this.files.length === 5;
-            }
         },
         watch: {
             'error.bag'() {
@@ -110,8 +107,29 @@
                 });
                 this.$emit('change');
             },
+            isDuplicated(file) {
+                for(let i = 0; i < this.files.length; i++) {
+                    let f = this.files[i];
+
+                    if(f.name === file.name && f.lastModified === file.lastModified &&
+                       f.type === file.type && f.size === file.size) {
+
+                        return true;
+                    }
+                }
+
+                return false;
+            },
             validateFileSet(files) {
-                for(let i = 0; i < files.length; i++ ){
+                for(let i = 0; i < files.length; i++){
+                    if(this.isDuplicated(files[i])) {
+                        this.error.bag.push(`The file <b>${files[i].name}</b> already loaded.`);
+                        return;
+                    }
+                    if(this.files.length === 5) {
+                        this.error.bag.push('Not allowed to load more than 5 files.');
+                        return;
+                    }
                     if(this.formats.includes(files[i].type)) {
                         if(files[i].size < 8*(10**7)) {
                             this.files.push(files[i]);
@@ -143,7 +161,7 @@
             },
             addEventListener() {
                 this.$refs.ddLoader.addEventListener('drop', function(e){
-                    if(!this.disabled) {
+                    if(!this.processing) {
                         this.validateFileSet(e.dataTransfer.files);
                     }
                 }.bind(this));
