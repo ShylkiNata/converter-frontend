@@ -108,11 +108,12 @@
                 this.files = this.files.filter((item, index) => {
                     return index !== removed;
                 });
+                this.$emit('change');
             },
             validateFileSet(files) {
                 for(let i = 0; i < files.length; i++ ){
                     if(this.formats.includes(files[i].type)) {
-                        if(files[i].size < 10 ** 6) {
+                        if(files[i].size < 8*(10**7)) {
                             this.files.push(files[i]);
                             this.$emit('change');
                             continue;
