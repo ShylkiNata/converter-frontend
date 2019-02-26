@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "vue-cli-service serve --open",
     "build-watch": "vue-cli-service build --watch",
-    "build": "vue-cli-service build",
+    "build": "vue-cli-service build  --no-clean",
     "test": "vue-cli-service test --watch",
     "lint": "vue-cli-service lint"
   },
@@ -36,6 +36,7 @@
     "@vue/cli-plugin-eslint": "^3.4.0",
     "@vue/cli-service": "^3.4.0",
     "babel-eslint": "^10.0.1",
+    "copy-webpack-plugin": "^5.0.0",
     "css-loader": "^2.1.0",
     "eslint": "^5.8.0",
     "eslint-plugin-vue": "^5.0.0",

@@ -1,4 +1,5 @@
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const HtmlPlugin = require('html-webpack-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
 
 const appPath = `${__dirname}/app`;
 
@@ -33,10 +34,13 @@ module.exports = {
       chunkFilename: 'js/[id].js',
     },
     plugins: [
-      new HtmlWebpackPlugin({
-        template: 'app/assets/index.html',
+      new HtmlPlugin({
+        template: `${appPath}/assets/index.html`,
         hash: true,
       }),
+      new CopyPlugin([
+        { from: `${appPath}/assets/.htaccess` },
+      ]),
     ],
   },
 };
