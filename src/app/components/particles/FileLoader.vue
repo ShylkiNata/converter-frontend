@@ -124,7 +124,7 @@
                 for(let i = 0; i < files.length; i++){
                     if(this.isDuplicated(files[i])) {
                         this.error.bag.push(`The file <b>${files[i].name}</b> already loaded.`);
-                        return;
+                        continue;
                     }
                     if(this.files.length === 5) {
                         this.error.bag.push('Not allowed to load more than 5 files.');
