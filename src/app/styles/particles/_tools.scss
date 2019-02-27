@@ -16,7 +16,6 @@
     align-items: center;
     justify-content: center;
 
-
     .tool--list__item {
       background-color: #f1f1f1;
       border-radius: 10px;
@@ -48,8 +47,27 @@
     }
   }
 
-  @media (max-width: 767px) {
-    flex-direction: column;
+  @media (max-width: 576px) {
+    .tools--list__body {
+      .tool--list__item {
+        width: 30%;
+        height: 80px;
+        font-weight: 500;
+        display: table;
+        line-height: 20px;
+        padding: 10px;
+
+        .item--body {
+          margin-top: 10px;
+          display: table-cell;
+          vertical-align: middle;
+
+          .item--body__icon {
+            display: none;
+          }
+        }
+      }
+    }
   }
 }
 
