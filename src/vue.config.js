@@ -5,6 +5,7 @@ const appPath = `${__dirname}/app`;
 
 module.exports = {
   lintOnSave: true,
+  runtimeCompiler: true,
   outputDir: 'public',
   css: { extract: {
     filename: 'css/style.css',
@@ -15,7 +16,7 @@ module.exports = {
     resolve: {
       alias: { 
         '@': appPath,
-        'assets': `${appPath}/assets`
+        'assets': `${appPath}/assets`,
       },
       symlinks: false,
     },

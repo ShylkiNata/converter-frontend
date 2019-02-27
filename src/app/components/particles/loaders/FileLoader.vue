@@ -25,6 +25,10 @@
                        @change="uploadFile">
             </div>
         </form>
+        <div class="file-uploader--external">
+            <google-picker />
+            <div> dropbox </div>
+        </div>
 
         <div class="file-uploader__list mt-4">
             <b-alert variant="danger" dismissible :show="error.visibility" fade
@@ -47,11 +51,15 @@
 </template>
 
 <script>
-    import ColorMixin from '../../mixins/ColorConverter';
-    import ErrorMixin from '../../mixins/Errors';
+    import ColorMixin from '../../../mixins/ColorConverter';
+    import ErrorMixin from '../../../mixins/Errors';
+    import GooglePicker from "./GooglePicker";
 
     export default {
         name: "file-loader",
+        components: {
+            GooglePicker
+        },
         props: [
           'bgColor',
           'formats',
@@ -173,29 +181,3 @@
         }
     }
 </script>
-
-<style lang="scss" scoped>
-
-
-    .file-list {
-        .file-item {
-            position: relative;
-            border: 1px solid grey;
-            line-height: 36px;
-            padding: 0 15px;
-            border-radius: 2px;
-            box-shadow: -2px 1px 3px -2px rgba(0,0,0,0.75);
-            margin-bottom: 8px;
-        }
-        .remove-icon {
-            position: absolute;
-            right: 15px;
-            top: 9px;
-            cursor: pointer;
-
-            &:hover {
-                filter: brightness(70%);
-            }
-        }
-    }
-</style>

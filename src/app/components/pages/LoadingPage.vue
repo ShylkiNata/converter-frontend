@@ -31,7 +31,7 @@
 
 <script>
     import NavBar from "../particles/navbar/NavBar";
-    import FileLoader from "../particles/FileLoader";
+    import FileLoader from "../particles/loaders/FileLoader";
     import ToolsMixin from "../../mixins/ToolList";
 
     export default {
