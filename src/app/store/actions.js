@@ -19,8 +19,7 @@ export default {
             });
     },
     uploadFiles($store, payload) {
-        let url = payload.url;
-        return this._vm.apiClient.request('post', url, payload.data)
+        return this._vm.apiClient.request('post', payload.url, payload.data)
             .then(response => {
                 return response;
             });
