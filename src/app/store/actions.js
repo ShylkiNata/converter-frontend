@@ -14,8 +14,7 @@ export default {
         let url = `auth/logout`;
         return this._vm.apiClient.request('post', url)
             .then(response => {
-                this._vm.apiClient.auth.token = null;
-                $store.commit('authenticate', null);
+                this.resetUser();
                 return response;
             });
     },
@@ -25,5 +24,9 @@ export default {
             .then(response => {
                 return response;
             });
+    },
+    resetUser($store) {
+        this._vm.apiClient.auth.token = null;
+        $store.commit('authenticate', null);
     },
 }

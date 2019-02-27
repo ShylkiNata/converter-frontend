@@ -15,6 +15,9 @@ import './helper/FontAwesomeIcon';
 
 Vue.prototype.apiClient = apiClient;
 
+apiClient.$store = store;
+apiClient.$router = router;
+
 let main = new Vue({
   el: '#app',
   router,

@@ -20,9 +20,5 @@ export default {
     setStorage(value) {
         localStorage.setItem(this.keyInStorage, value);
     },
-    rmStorage() {
-        this.token = null;
-        localStorage.removeItem(this.keyInStorage);
-    },
 }
 

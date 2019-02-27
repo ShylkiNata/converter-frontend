@@ -38,6 +38,11 @@ export default {
                 `Error ${response.status}: ${response.statusText}`;
         }
 
+        if(response.status === 401) {
+            this.$store.dispatch('resetUser');
+            this.$router.push({name: 'Sign In'});
+        }
+
         return message;
     }
 }
