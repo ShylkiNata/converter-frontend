@@ -1,5 +1,5 @@
 <template>
-    <file-picker-button :config="gConfig" @picked="showDetails">
+    <file-picker-button :config="gConfig" @picked="load">
          Google Drive
     </file-picker-button>
 </template>
@@ -16,9 +16,18 @@
             this.gConfig = this.$configs.GOOGLE_API;
         },
         methods: {
-            showDetails (data) {
+            load (data) {
                 if(data.action === 'picked') {
-                    console.log(data.docs)
+                    let docs = [];
+                    data.docs.forEach(item => {
+                        docs.push({
+                            name: item.name,
+                            type: item.mimeType,
+                            size: item.sizeBytes,
+                            lastModified: item.lastEditedUtc
+                        })
+                    });
+                    this.$emit('picked', docs);
                 }
             }
         }

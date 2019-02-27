@@ -26,7 +26,7 @@
             </div>
         </form>
         <div class="file-uploader--external">
-            <google-picker />
+            <google-picker @picked="validateFileSet" />
             <div> dropbox </div>
         </div>
 
