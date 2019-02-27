@@ -14,7 +14,6 @@ export default {
         let url = `auth/logout`;
         return this._vm.apiClient.request('post', url)
             .then(response => {
-                this.resetUser();
                 return response;
             });
     },

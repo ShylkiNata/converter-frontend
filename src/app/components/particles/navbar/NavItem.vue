@@ -29,10 +29,11 @@
         },
         methods: {
             logout() {
-                this.$store.dispatch('logout')
-                    .then(response => {
-                        this.$router.push('/');
-                    })
+                this.$store.dispatch('logout').then(() => {
+                    this.$store.dispatch('resetUser').then(() => {
+                            this.$router.push({name: 'Home'})
+                        })
+                    });
             }
         }
     }
