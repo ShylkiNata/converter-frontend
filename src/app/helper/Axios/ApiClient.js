@@ -40,7 +40,7 @@ export default {
 
         if(response.status === 401) {
             this.$store.dispatch('resetUser');
-            this.$router.push({name: 'Sign In'});
+            this.$router.push({ name: 'Sign In' });
         }
 
         return message;

@@ -18,6 +18,8 @@ Vue.prototype.apiClient = apiClient;
 apiClient.$store = store;
 apiClient.$router = router;
 
+router.$store = store;
+
 let main = new Vue({
   el: '#app',
   router,

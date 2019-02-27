@@ -11,20 +11,29 @@ export default [
         path: '/sign-in',
         name: 'Sign In',
         component: AuthPage,
+        meta: {
+            guest: true
+        }
     },
     {
         path: '/sign-up',
         name: 'Sign Up',
         component: AuthPage,
+        meta: {
+            guest: true
+        }
     },
     {
         path: '/home',
         name: 'Home',
-        component: Home
+        component: Home,
     },
     {
         path: '/tool/:tool/:type',
         name: 'Loading Page',
         component: LoadingPage,
+        meta: {
+            requiresAuth: true
+        }
     }
 ];
