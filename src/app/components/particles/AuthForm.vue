@@ -1,6 +1,6 @@
 <template>
     <div class="page--auth__card">
-        <div class="card">
+        <div class="card animation-slide-in-elliptic-top-fwd">
             <div class="card-header blue-header">
                 <span class="card-title" v-html="formType" />
             </div>
