@@ -15,7 +15,6 @@ import apiClient from './helper/Axios/ApiClient.js';
 import validator from './helper/VeeValidator.js';
 
 import './helper/FontAwesomeIcon';
-import {FontAwesomeIcon} from "@fortawesome/vue-fontawesome";
 
 Vue.prototype.apiClient = apiClient;
 

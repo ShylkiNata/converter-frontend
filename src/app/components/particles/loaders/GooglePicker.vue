@@ -1,6 +1,7 @@
 <template>
-    <file-picker-button :config="gConfig" @picked="load">
-         Google Drive
+    <file-picker-button :config="gConfig" @picked="load" class="picker-btn">
+        <font-awesome-icon :icon="['fab', 'google-drive']" />
+        <span class="google-picker-btn--text">Google Drive</span>
     </file-picker-button>
 </template>
 
@@ -8,7 +9,7 @@
     import FilePickerButton from 'vue-google-picker';
 
     export default {
-        name: "dropbox-picker",
+        name: "google-picker",
         components: {
             FilePickerButton
         },

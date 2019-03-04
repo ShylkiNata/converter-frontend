@@ -1,7 +1,7 @@
 export default {
     API_URL: 'http://localhost:8005/api/',
     GOOGLE_API: {
-        developerKey: 'AIzaSyBTL-nO6MKWM3RFoj63vS7lTy7c6OYXPOI',
+        developerKey: 'AIzaSyDQfI7Opw1UwG2N8ywIVJJ2070tDoZuwug',
         clientId: '446463864674-1ccpud0rnjv4mm0ts1oru4feosq56lot.apps.googleusercontent.com',
         scope: 'https://www.googleapis.com/auth/drive'
     },

@@ -1,10 +1,9 @@
 <template>
     <div class="file-uploader">
 
-        <form ref="ddLoader" :style="{'background-color': bgColor}"
-              class="file-uploader__drag-drop">
-
-            <div class="file-uploader--shadow" :style="{'background-color': shadedBg }">
+        <div :style="{'background-color': bgColor}" class="file-uploader__drag-drop">
+            <div class="file-uploader--shadow" :style="{'background-color': shadedBg }"
+                 ref="ddLoader">
                 <span class="file-uploader__drag-drop__title">
                     <div class="file-uploader__drag-drop__icon">
                         <font-awesome-icon icon="file-upload" />
@@ -24,10 +23,10 @@
                        ref="clickLoader"
                        @change="uploadFile">
             </div>
-        </form>
-        <div class="file-uploader--external">
-            <google-picker @picked="validateFileSet" />
-            <!--<dropbox-picker @picked="validateFileSet" />-->
+            <div class="file-uploader--external">
+                <dropbox-picker @picked="validateFileSet" />
+                <google-picker @picked="validateFileSet" :formats="formats"/>
+            </div>
         </div>
 
         <div class="file-uploader__list mt-4">
