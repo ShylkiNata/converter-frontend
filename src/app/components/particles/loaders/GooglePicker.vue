@@ -8,12 +8,12 @@
     import FilePickerButton from 'vue-google-picker';
 
     export default {
-        name: "google-picker",
+        name: "dropbox-picker",
         components: {
             FilePickerButton
         },
         created() {
-            this.gConfig = this.$configs.GOOGLE_API;
+            this.gConfig = $configs.GOOGLE_API;
         },
         methods: {
             load (data) {

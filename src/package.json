@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "vue-cli-service serve --open",
+    "dev": "vue-cli-service serve --open  --watch",
     "build-watch": "vue-cli-service build --watch",
     "build": "vue-cli-service build  --no-clean",
     "test": "vue-cli-service test --watch",
@@ -19,6 +19,9 @@
     "axios": "^0.18.0",
     "bootstrap": "^4.2.1",
     "bootstrap-vue": "^2.0.0-rc.11",
+    "dropbox": "^4.0.16",
+    "es6-promise": "^4.2.6",
+    "isomorphic-fetch": "^2.2.1",
     "jquery": "^3.3.1",
     "node-sass": "^4.11.0",
     "popper.js": "^1.14.7",

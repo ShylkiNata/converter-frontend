@@ -5,7 +5,6 @@ import VueAxios from 'vue-axios';
 Vue.use(VueAxios, axios);
 
 import AuthMiddleware from './AuthMiddleware.js';
-import server from '../../../configs/server.js';
 
 export default {
     auth: AuthMiddleware,
@@ -14,7 +13,7 @@ export default {
 
         let headers = this.getHeaders();
 
-        return axios[method](server.API_URL + url, data, headers)
+        return axios[method]($configs.API_URL + url, data, headers)
                     .then(response => {
                         return Promise.resolve(response.data);
                     })

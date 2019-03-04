@@ -27,7 +27,7 @@
         </form>
         <div class="file-uploader--external">
             <google-picker @picked="validateFileSet" />
-            <div> dropbox </div>
+            <!--<dropbox-picker @picked="validateFileSet" />-->
         </div>
 
         <div class="file-uploader__list mt-4">
@@ -54,10 +54,12 @@
     import ColorMixin from '../../../mixins/ColorConverter';
     import ErrorMixin from '../../../mixins/Errors';
     import GooglePicker from "./GooglePicker";
+    import DropboxPicker from "./DropboxPicker";
 
     export default {
         name: "file-loader",
         components: {
+            DropboxPicker,
             GooglePicker
         },
         props: [
